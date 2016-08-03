@@ -50,12 +50,12 @@
 //    picker.confirmSingleSelection = YES;
 //    picker.confirmSingleSelectionPrompt = @"Do you want to select the image you have chosen?";
     
-//    picker.showCameraButton = YES;
-//    picker.autoSelectCameraImages = YES;
+    picker.showCameraButton = YES;
+    picker.autoSelectCameraImages = YES;
     
     picker.modalPresentationStyle = UIModalPresentationPopover;
 
-//    picker.mediaTypes = @[@(PHAssetMediaTypeImage)];
+    picker.mediaTypes = @[@(PHAssetMediaTypeImage)];
 
 //    picker.pickerBackgroundColor = [UIColor blackColor];
 //    picker.pickerTextColor = [UIColor whiteColor];
