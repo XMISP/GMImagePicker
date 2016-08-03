@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		519661401D518455007D06FA /* GMImagePicker.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5196613E1D518455007D06FA /* GMImagePicker.strings */; };
 		B31E08651A0C45BC000D7841 /* GMImagePicker.strings in Resources */ = {isa = PBXBuildFile; fileRef = B31E084C1A0C45BC000D7841 /* GMImagePicker.strings */; };
 		B31E08661A0C45BC000D7841 /* GMImagePicker.strings in Resources */ = {isa = PBXBuildFile; fileRef = B31E084F1A0C45BC000D7841 /* GMImagePicker.strings */; };
 		B31E08671A0C45BC000D7841 /* GMImagePicker.strings in Resources */ = {isa = PBXBuildFile; fileRef = B31E08521A0C45BC000D7841 /* GMImagePicker.strings */; };
@@ -47,6 +48,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5196612E1D518216007D06FA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		5196612F1D518216007D06FA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		5196613F1D518455007D06FA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = GMImagePicker.strings; sourceTree = "<group>"; };
 		B31E084D1A0C45BC000D7841 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = GMImagePicker.strings; sourceTree = "<group>"; };
 		B31E08501A0C45BC000D7841 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = GMImagePicker.strings; sourceTree = "<group>"; };
 		B31E08531A0C45BC000D7841 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = GMImagePicker.strings; sourceTree = "<group>"; };
@@ -106,6 +110,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5196613D1D518407007D06FA /* zh-Hans.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				5196613E1D518455007D06FA /* GMImagePicker.strings */,
+			);
+			path = "zh-Hans.lproj";
+			sourceTree = "<group>";
+		};
 		B31E084B1A0C45BC000D7841 /* Base.lproj */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,6 +246,7 @@
 		B3A2F8A319D18A3700A59BE4 /* GMImagePicker */ = {
 			isa = PBXGroup;
 			children = (
+				5196613D1D518407007D06FA /* zh-Hans.lproj */,
 				B31E084B1A0C45BC000D7841 /* Base.lproj */,
 				B31E084E1A0C45BC000D7841 /* ca.lproj */,
 				B31E08511A0C45BC000D7841 /* de.lproj */,
@@ -312,7 +325,6 @@
 				TargetAttributes = {
 					B37D577319CA3B3A007F64BD = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = X5S967DLZ5;
 					};
 					B37D578C19CA3B3A007F64BD = {
 						CreatedOnToolsVersion = 6.0;
@@ -333,6 +345,7 @@
 				fr,
 				it,
 				pt,
+				"zh-Hans",
 			);
 			mainGroup = B37D576B19CA3B39007F64BD;
 			productRefGroup = B37D577519CA3B3A007F64BD /* Products */;
@@ -362,6 +375,7 @@
 				B37D579F19CA44AF007F64BD /* Main.storyboard in Resources */,
 				B31E08661A0C45BC000D7841 /* GMImagePicker.strings in Resources */,
 				B31E08691A0C45BC000D7841 /* GMImagePicker.strings in Resources */,
+				519661401D518455007D06FA /* GMImagePicker.strings in Resources */,
 				B37D578519CA3B3A007F64BD /* Images.xcassets in Resources */,
 				B31E08651A0C45BC000D7841 /* GMImagePicker.strings in Resources */,
 				B31E08671A0C45BC000D7841 /* GMImagePicker.strings in Resources */,
@@ -414,6 +428,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		5196613E1D518455007D06FA /* GMImagePicker.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5196613F1D518455007D06FA /* zh-Hans */,
+			);
+			name = GMImagePicker.strings;
+			sourceTree = "<group>";
+		};
 		B31E084C1A0C45BC000D7841 /* GMImagePicker.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -482,6 +504,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				B37D578219CA3B3A007F64BD /* Base */,
+				5196612E1D518216007D06FA /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -490,6 +513,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				B37D578719CA3B3A007F64BD /* Base */,
+				5196612F1D518216007D06FA /* zh-Hans */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
