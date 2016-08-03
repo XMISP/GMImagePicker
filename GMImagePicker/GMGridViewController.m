@@ -369,6 +369,11 @@ NSString * const GMGridViewCellIdentifier = @"GMGridViewCellIdentifier";
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    // by mingwei
+    if (self.picker.selectedAssets.count == self.picker.selectPhotoOfMax) {
+        return NO;
+    }
+    
     PHAsset *asset = self.assetsFetchResults[indexPath.item];
     
     GMGridViewCell *cell = (GMGridViewCell *)[collectionView cellForItemAtIndexPath:indexPath];

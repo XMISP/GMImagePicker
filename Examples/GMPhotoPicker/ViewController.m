@@ -45,6 +45,7 @@
     picker.colsInPortrait = 4;
     picker.colsInLandscape = 5;
     picker.minimumInteritemSpacing = 2.0;
+    picker.selectPhotoOfMax = 4;
     
 //    picker.allowsMultipleSelection = NO;
 //    picker.confirmSingleSelection = YES;

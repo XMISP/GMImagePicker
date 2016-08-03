@@ -35,6 +35,7 @@
         _colsInLandscape = 5;
         _minimumInteritemSpacing = 2.0;
         
+        // by mingwei
         // Sample of how to select the collections you want to display:
 //        _customSmartCollections = @[@(PHAssetCollectionSubtypeSmartAlbumFavorites),
 //                                    @(PHAssetCollectionSubtypeSmartAlbumRecentlyAdded),
@@ -142,23 +143,28 @@
 
 - (void)selectAsset:(PHAsset *)asset
 {
-    [self.selectedAssets insertObject:asset atIndex:self.selectedAssets.count];
-    [self updateDoneButton];
-    
-    if (!self.allowsMultipleSelection) {
-        if (self.confirmSingleSelection) {
-            NSString *message = self.confirmSingleSelectionPrompt ? self.confirmSingleSelectionPrompt : [NSString stringWithFormat:NSLocalizedStringFromTableInBundle(@"picker.confirm.message",  @"GMImagePicker", [NSBundle bundleForClass:GMImagePickerController.class],  @"Do you want to select the image you tapped on?")];
-            
-            [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:NSLocalizedStringFromTableInBundle(@"picker.confirm.title",  @"GMImagePicker", [NSBundle bundleForClass:GMImagePickerController.class],  @"Are You Sure?")]
-                                        message:message
-                                       delegate:self
-                              cancelButtonTitle:[NSString stringWithFormat:NSLocalizedStringFromTableInBundle(@"picker.action.no",  @"GMImagePicker", [NSBundle bundleForClass:GMImagePickerController.class],  @"No")]
-                              otherButtonTitles:[NSString stringWithFormat:NSLocalizedStringFromTableInBundle(@"picker.action.yes",  @"GMImagePicker", [NSBundle bundleForClass:GMImagePickerController.class],  @"Yes")], nil] show];
-        } else {
-            [self finishPickingAssets:self];
+    // by mingwei
+    if (self.selectedAssets.count == self.selectPhotoOfMax) {
+        [self showAlertView:self.selectPhotoOfMax];
+    }else {
+        [self.selectedAssets insertObject:asset atIndex:self.selectedAssets.count];
+        [self updateDoneButton];
+        
+        if (!self.allowsMultipleSelection) {
+            if (self.confirmSingleSelection) {
+                NSString *message = self.confirmSingleSelectionPrompt ? self.confirmSingleSelectionPrompt : [NSString stringWithFormat:NSLocalizedStringFromTableInBundle(@"picker.confirm.message",  @"GMImagePicker", [NSBundle bundleForClass:GMImagePickerController.class],  @"Do you want to select the image you tapped on?")];
+                
+                [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:NSLocalizedStringFromTableInBundle(@"picker.confirm.title",  @"GMImagePicker", [NSBundle bundleForClass:GMImagePickerController.class],  @"Are You Sure?")]
+                                            message:message
+                                           delegate:self
+                                  cancelButtonTitle:[NSString stringWithFormat:NSLocalizedStringFromTableInBundle(@"picker.action.no",  @"GMImagePicker", [NSBundle bundleForClass:GMImagePickerController.class],  @"No")]
+                                  otherButtonTitles:[NSString stringWithFormat:NSLocalizedStringFromTableInBundle(@"picker.action.yes",  @"GMImagePicker", [NSBundle bundleForClass:GMImagePickerController.class],  @"Yes")], nil] show];
+            } else {
+                [self finishPickingAssets:self];
+            }
+        } else if (self.displaySelectionInfoToolbar || self.showCameraButton) {
+            [self updateToolbar];
         }
-    } else if (self.displaySelectionInfoToolbar || self.showCameraButton) {
-        [self updateToolbar];
     }
 }
 
@@ -205,6 +211,19 @@
     }
 }
 
+// by mingwei
+- (void)showAlertView:(NSInteger)photoNumOfMax
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提醒" message:[NSString stringWithFormat:@"不能超%ld张",photoNumOfMax] preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){
+        
+    }];
+    
+    [alert addAction:action1];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 
 #pragma mark - User finish Actions
 
@@ -214,7 +233,10 @@
         [self.delegate assetsPickerControllerDidCancel:self];
     }
     
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    // by mingwei
+    //    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    UINavigationController *nav = (UINavigationController *)self.parentViewController;
+    [nav popViewControllerAnimated:YES];
 }
 
 
@@ -250,9 +272,13 @@
     if (nImages > 0 && nVideos > 0) {
         return [NSString stringWithFormat:NSLocalizedStringFromTableInBundle(@"picker.selection.multiple-items",  @"GMImagePicker", [NSBundle bundleForClass:GMImagePickerController.class],  @"%@ Items Selected" ), @(nImages + nVideos)];
     } else if (nImages > 1) {
-        return [NSString stringWithFormat:NSLocalizedStringFromTableInBundle(@"picker.selection.multiple-photos",  @"GMImagePicker", [NSBundle bundleForClass:GMImagePickerController.class],  @"%@ Photos Selected"), @(nImages)];
+        // by mingwei
+        return [NSString stringWithFormat:[NSString stringWithFormat:@"%@/%@ %@",@(nImages), @(self.selectPhotoOfMax),NSLocalizedString(@"Photos Selected", nil)]];
+//        return [NSString stringWithFormat:NSLocalizedStringFromTableInBundle(@"picker.selection.multiple-photos",  @"GMImagePicker", [NSBundle bundleForClass:GMImagePickerController.class],  @"%@ Photos Selected"), @(nImages)];
     } else if (nImages == 1) {
-        return NSLocalizedStringFromTableInBundle(@"picker.selection.single-photo",  @"GMImagePicker", [NSBundle bundleForClass:GMImagePickerController.class],  @"1 Photo Selected" );
+        // by mingwei
+        return [NSString stringWithFormat:[NSString stringWithFormat:@"%@/%@ %@",@(nImages), @(self.selectPhotoOfMax),NSLocalizedString(@"Photos Selected", nil)]];
+//        return NSLocalizedStringFromTableInBundle(@"picker.selection.single-photo",  @"GMImagePicker", [NSBundle bundleForClass:GMImagePickerController.class],  @"1 Photo Selected" );
     } else if (nVideos > 1) {
         return [NSString stringWithFormat:NSLocalizedStringFromTableInBundle(@"picker.selection.multiple-videos",  @"GMImagePicker", [NSBundle bundleForClass:GMImagePickerController.class],  @"%@ Videos Selected"), @(nVideos)];
     } else if (nVideos == 1) {

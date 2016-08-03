@@ -165,6 +165,9 @@ static CGSize const kPopoverContentSize = {480, 720};
 @property (nonatomic) UIStatusBarStyle pickerStatusBarStyle;
 @property (nonatomic) BOOL useCustomFontForNavigationBar;
 
+// by mingwei
+@property (assign, nonatomic) NSInteger selectPhotoOfMax;
+
 /**
  * A reference to the navigation controller used to manage the whole picking process
  */
